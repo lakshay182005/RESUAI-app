@@ -28,6 +28,7 @@ load_dotenv()
 os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
 # --- Custom CSS for modern UI ---
+st.set_page_config(page_title="Smart Visual Assistant", layout="wide")
 st.markdown("""
 <style>
 /* --- Overall Background --- */
@@ -389,4 +390,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
