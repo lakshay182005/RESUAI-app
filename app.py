@@ -28,6 +28,12 @@ load_dotenv()
 os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
 # --- Custom CSS for modern UI ---
+st.set_page_config(
+    page_title="Resume Chatbot",
+    page_icon="🧑‍💼",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 st.markdown("""
 <style>
 
@@ -401,6 +407,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
