@@ -95,17 +95,28 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* --- File Uploader --- */
 [data-testid="stFileUploader"] {
-    background: rgba(117, 191, 236, 0.1) !important;
-    padding: 14px;
-    border-radius: 16px;
-    border: 1.5px solid #75bfec;
-    color: #000000 !important;
+        background: rgba(117, 191, 236, 0.1) !important;
+        padding: 14px;
+        border-radius: 16px;
+        border: 1.5px solid #75bfec;
+        color: #000000 !important;
 }
-[data-testid="stFileUploader"] div div {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border-radius: 10px !important;
-    border: 1px solid #75bfec !important;
+[data-testid="stFileUploader"] section div div {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-radius: 10px !important;
+        border: 1px solid #75bfec !important;
+}
+
+[data-testid="stFileUploader"] section div div button {
+        background: #4daae3 !important;
+        color: white !important;
+        border-radius: 8px !important;
+        font-weight: bold;
+        padding: 6px 12px;
+}
+[data-testid="stFileUploader"] section div div button:hover {
+    background: #3a94cc !important;
 }
 
 /* --- Buttons --- */
@@ -390,5 +401,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
