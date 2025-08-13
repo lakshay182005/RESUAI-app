@@ -30,22 +30,22 @@ os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 # --- Custom CSS for modern UI ---
 st.markdown("""
 <style>
-            
 /* --- Overall Background --- */
 body, .main, [data-testid="stAppViewContainer"] {
-    background: linear-gradient(120deg, #75bfec 0%, #ffffff 100%);
+    background: linear-gradient(120deg, #75bfec 0%, #ffffff 100%) !important;
     color: #000000 !important; /* Black text */
     font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
 }
 
 /* --- Header --- */
 [data-testid="stHeader"] {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4) !important;
+    color: #000000 !important;
 }
 
 /* --- Sidebar --- */
 [data-testid="stSidebar"], .block-container {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.85) !important;
     color: #000000 !important;
 }
 
@@ -64,15 +64,15 @@ body, .main, [data-testid="stAppViewContainer"] {
 /* User Messages - Blue */
 .user-msg {
     background: #4daae3;
-    color: #ffffff;
+    color: #ffffff !important;
     margin-left: auto;
     text-align: right;
 }
 
 /* Assistant Messages - White with Black Text */
 .assistant-msg {
-    background: #ffffff;
-    color: #000000;
+    background: #ffffff !important;
+    color: #000000 !important;
     border: 1px solid #75bfec;
     margin-right: auto;
     text-align: left;
@@ -80,12 +80,12 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* --- Card Style --- */
 .card {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.85) !important;
     border-radius: 1em;
     box-shadow: 0 4px 40px 0 rgba(117, 191, 236, 0.25);
     padding: 2em;
     margin-bottom: 1.3em;
-    color: #000000;
+    color: #000000 !important;
 }
 
 /* --- File Uploader --- */
@@ -99,7 +99,7 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* --- Buttons --- */
 .stButton>button, button, [data-testid="baseButton-secondary"] {
-    background: linear-gradient(90deg, #75bfec 0%, #4daae3 100%);
+    background: linear-gradient(90deg, #75bfec 0%, #4daae3 100%) !important;
     color: white !important;
     padding: 0.5em 1.3em;
     border-radius: 0.7em;
@@ -110,6 +110,16 @@ body, .main, [data-testid="stAppViewContainer"] {
 .stButton>button:hover, button:hover {
     background: #4daae3 !important;
     color: white !important;
+}
+
+/* --- Dropdown & Selectbox --- */
+div[data-baseweb="select"], div[data-baseweb="select"] * {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+[data-testid="stSelectbox"] > div > div {
+    background-color: #ffffff !important;
+    color: #000000 !important;
 }
 
 /* --- Headings --- */
@@ -124,7 +134,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* --- Inputs --- */
-input {
+input, textarea {
     background: #ffffff !important;
     color: #000000 !important;
     border: 1px solid #75bfec !important;
@@ -135,8 +145,14 @@ input {
 ul[style*="color:#b7e7fe;"] li {
     color: #000000 !important;
 }
+
+/* --- Hide Theme Toolbar (to prevent user theme change) --- */
+[data-testid="stToolbar"] {
+    display: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # --- Text Extraction with Gemini ---
@@ -373,3 +389,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
