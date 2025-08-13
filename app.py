@@ -30,11 +30,16 @@ os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 # --- Custom CSS for modern UI ---
 st.markdown("""
 <style>
-            
+
+/* Enable system theme awareness without overriding your design */
+:root {
+    color-scheme: light dark; /* Lets browser adjust system UI like scrollbars */
+}
+
 /* --- Overall Background --- */
 body, .main, [data-testid="stAppViewContainer"] {
     background: linear-gradient(120deg, #75bfec 0%, #ffffff 100%);
-    color: #000000 !important; /* Black text */
+    color: var(--text-color, #000000) !important; /* Use variable for theme safety */
     font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
 }
 
@@ -46,7 +51,7 @@ body, .main, [data-testid="stAppViewContainer"] {
 /* --- Sidebar --- */
 [data-testid="stSidebar"], .block-container {
     background: rgba(255,255,255,0.85);
-    color: #000000 !important;
+    color: var(--text-color, #000000) !important;
 }
 
 /* --- Chat Message Styling --- */
@@ -72,7 +77,7 @@ body, .main, [data-testid="stAppViewContainer"] {
 /* Assistant Messages - White with Black Text */
 .assistant-msg {
     background: #ffffff;
-    color: #000000;
+    color: var(--text-color, #000000);
     border: 1px solid #75bfec;
     margin-right: auto;
     text-align: left;
@@ -85,7 +90,7 @@ body, .main, [data-testid="stAppViewContainer"] {
     box-shadow: 0 4px 40px 0 rgba(117, 191, 236, 0.25);
     padding: 2em;
     margin-bottom: 1.3em;
-    color: #000000;
+    color: var(--text-color, #000000);
 }
 
 /* --- File Uploader --- */
@@ -94,7 +99,7 @@ body, .main, [data-testid="stAppViewContainer"] {
     padding: 14px;
     border-radius: 16px;
     border: 1.5px solid #75bfec;
-    color: #000000 !important;
+    color: var(--text-color, #000000) !important;
 }
 
 /* --- Buttons --- */
@@ -114,7 +119,7 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* --- Headings --- */
 h1, h2, h3, h4, h5 {
-    color: #000000 !important;
+    color: var(--text-color, #000000) !important;
     letter-spacing: 1.4px;
 }
 
@@ -126,17 +131,50 @@ h1, h2, h3, h4, h5 {
 /* --- Inputs --- */
 input {
     background: #ffffff !important;
-    color: #000000 !important;
+    color: var(--text-color, #000000) !important;
     border: 1px solid #75bfec !important;
     border-radius: 0.8em !important;
 }
 
 /* --- Make "Summarize skills..." tips black --- */
 ul[style*="color:#b7e7fe;"] li {
-    color: #000000 !important;
+    color: var(--text-color, #000000) !important;
 }
+
+/* --- Scrollbar adapts to system theme --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(128,128,128,0.4);
+    border-radius: 4px;
+}
+
+/* Dark mode improvements without breaking design */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #eaeaea;
+    }
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(120deg, #2a2a2a 0%, #1c1c1c 100%);
+    }
+    .assistant-msg {
+        background: #2d2d2d;
+        border-color: #4daae3;
+    }
+    .card {
+        background: rgba(40,40,40,0.9);
+    }
+    input {
+        background: #1c1c1c !important;
+        color: #eaeaea !important;
+        border-color: #4daae3 !important;
+    }
+}
+
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # --- Text Extraction with Gemini ---
@@ -373,3 +411,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
