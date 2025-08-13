@@ -28,35 +28,24 @@ load_dotenv()
 os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
 # --- Custom CSS for modern UI ---
-st.set_page_config(
-    page_title="Resume Chatbot",
-    page_icon="🧑‍💼",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
 st.markdown("""
 <style>
-
-/* Tell browser we support both themes but override Streamlit defaults */
-:root {
-    color-scheme: light dark;
-}
-
-/* --- Main App Background --- */
+            
+/* --- Overall Background --- */
 body, .main, [data-testid="stAppViewContainer"] {
-    background: linear-gradient(120deg, #75bfec 0%, #ffffff 100%) !important;
-    color: #000000 !important;
+    background: linear-gradient(120deg, #75bfec 0%, #ffffff 100%);
+    color: #000000 !important; /* Black text */
     font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
 }
 
 /* --- Header --- */
 [data-testid="stHeader"] {
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.4);
 }
 
 /* --- Sidebar --- */
 [data-testid="stSidebar"], .block-container {
-    background: rgba(255,255,255,0.95) !important;
+    background: rgba(255,255,255,0.85);
     color: #000000 !important;
 }
 
@@ -74,16 +63,16 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* User Messages - Blue */
 .user-msg {
-    background: #4daae3 !important;
-    color: #ffffff !important;
+    background: #4daae3;
+    color: #ffffff;
     margin-left: auto;
     text-align: right;
 }
 
-/* Assistant Messages - White */
+/* Assistant Messages - White with Black Text */
 .assistant-msg {
-    background: #ffffff !important;
-    color: #000000 !important;
+    background: #ffffff;
+    color: #000000;
     border: 1px solid #75bfec;
     margin-right: auto;
     text-align: left;
@@ -91,43 +80,26 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* --- Card Style --- */
 .card {
-    background: rgba(255,255,255,0.95) !important;
+    background: rgba(255,255,255,0.85);
     border-radius: 1em;
     box-shadow: 0 4px 40px 0 rgba(117, 191, 236, 0.25);
     padding: 2em;
     margin-bottom: 1.3em;
-    color: #000000 !important;
+    color: #000000;
 }
 
 /* --- File Uploader --- */
 [data-testid="stFileUploader"] {
-        background: rgba(117, 191, 236, 0.1) !important;
-        padding: 14px;
-        border-radius: 16px;
-        border: 1.5px solid #75bfec;
-        color: #000000 !important;
-}
-[data-testid="stFileUploader"] section div div {
-        background: #ffffff !important;
-        color: #000000 !important;
-        border-radius: 10px !important;
-        border: 1px solid #75bfec !important;
-}
-
-[data-testid="stFileUploader"] section div div button {
-        background: #4daae3 !important;
-        color: white !important;
-        border-radius: 8px !important;
-        font-weight: bold;
-        padding: 6px 12px;
-}
-[data-testid="stFileUploader"] section div div button:hover {
-    background: #3a94cc !important;
+    background: rgba(117, 191, 236, 0.15) !important;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1.5px solid #75bfec;
+    color: #000000 !important;
 }
 
 /* --- Buttons --- */
 .stButton>button, button, [data-testid="baseButton-secondary"] {
-    background: linear-gradient(90deg, #75bfec 0%, #4daae3 100%) !important;
+    background: linear-gradient(90deg, #75bfec 0%, #4daae3 100%);
     color: white !important;
     padding: 0.5em 1.3em;
     border-radius: 0.7em;
@@ -146,31 +118,25 @@ h1, h2, h3, h4, h5 {
     letter-spacing: 1.4px;
 }
 
+/* --- Logo Padding --- */
+#ipu-logo {
+    margin-bottom: 10px;
+}
+
 /* --- Inputs --- */
-input, textarea {
+input {
     background: #ffffff !important;
     color: #000000 !important;
     border: 1px solid #75bfec !important;
     border-radius: 0.8em !important;
 }
 
-/* --- Fix Try These Buttons --- */
-a, .stMarkdown p a {
-    color: #4daae3 !important;
+/* --- Make "Summarize skills..." tips black --- */
+ul[style*="color:#b7e7fe;"] li {
+    color: #000000 !important;
 }
-
-/* --- Scrollbar --- */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-thumb {
-    background-color: rgba(128,128,128,0.4);
-    border-radius: 4px;
-}
-
 </style>
 """, unsafe_allow_html=True)
-
 
 
 # --- Text Extraction with Gemini ---
@@ -407,7 +373,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
