@@ -31,27 +31,27 @@ os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 st.markdown("""
 <style>
 
-/* Enable system theme awareness without overriding your design */
+/* Tell browser we support both themes but override Streamlit defaults */
 :root {
-    color-scheme: light dark; /* Lets browser adjust system UI like scrollbars */
+    color-scheme: light dark;
 }
 
-/* --- Overall Background --- */
+/* --- Main App Background --- */
 body, .main, [data-testid="stAppViewContainer"] {
-    background: linear-gradient(120deg, #75bfec 0%, #ffffff 100%);
-    color: var(--text-color, #000000) !important; /* Use variable for theme safety */
+    background: linear-gradient(120deg, #75bfec 0%, #ffffff 100%) !important;
+    color: #000000 !important;
     font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
 }
 
 /* --- Header --- */
 [data-testid="stHeader"] {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* --- Sidebar --- */
 [data-testid="stSidebar"], .block-container {
-    background: rgba(255,255,255,0.85);
-    color: var(--text-color, #000000) !important;
+    background: rgba(255,255,255,0.95) !important;
+    color: #000000 !important;
 }
 
 /* --- Chat Message Styling --- */
@@ -68,16 +68,16 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* User Messages - Blue */
 .user-msg {
-    background: #4daae3;
-    color: #ffffff;
+    background: #4daae3 !important;
+    color: #ffffff !important;
     margin-left: auto;
     text-align: right;
 }
 
-/* Assistant Messages - White with Black Text */
+/* Assistant Messages - White */
 .assistant-msg {
-    background: #ffffff;
-    color: var(--text-color, #000000);
+    background: #ffffff !important;
+    color: #000000 !important;
     border: 1px solid #75bfec;
     margin-right: auto;
     text-align: left;
@@ -85,26 +85,32 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* --- Card Style --- */
 .card {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.95) !important;
     border-radius: 1em;
     box-shadow: 0 4px 40px 0 rgba(117, 191, 236, 0.25);
     padding: 2em;
     margin-bottom: 1.3em;
-    color: var(--text-color, #000000);
+    color: #000000 !important;
 }
 
 /* --- File Uploader --- */
 [data-testid="stFileUploader"] {
-    background: rgba(117, 191, 236, 0.15) !important;
+    background: rgba(117, 191, 236, 0.1) !important;
     padding: 14px;
     border-radius: 16px;
     border: 1.5px solid #75bfec;
-    color: var(--text-color, #000000) !important;
+    color: #000000 !important;
+}
+[data-testid="stFileUploader"] div div {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-radius: 10px !important;
+    border: 1px solid #75bfec !important;
 }
 
 /* --- Buttons --- */
 .stButton>button, button, [data-testid="baseButton-secondary"] {
-    background: linear-gradient(90deg, #75bfec 0%, #4daae3 100%);
+    background: linear-gradient(90deg, #75bfec 0%, #4daae3 100%) !important;
     color: white !important;
     padding: 0.5em 1.3em;
     border-radius: 0.7em;
@@ -119,57 +125,30 @@ body, .main, [data-testid="stAppViewContainer"] {
 
 /* --- Headings --- */
 h1, h2, h3, h4, h5 {
-    color: var(--text-color, #000000) !important;
+    color: #000000 !important;
     letter-spacing: 1.4px;
 }
 
-/* --- Logo Padding --- */
-#ipu-logo {
-    margin-bottom: 10px;
-}
-
 /* --- Inputs --- */
-input {
+input, textarea {
     background: #ffffff !important;
-    color: var(--text-color, #000000) !important;
+    color: #000000 !important;
     border: 1px solid #75bfec !important;
     border-radius: 0.8em !important;
 }
 
-/* --- Make "Summarize skills..." tips black --- */
-ul[style*="color:#b7e7fe;"] li {
-    color: var(--text-color, #000000) !important;
+/* --- Fix Try These Buttons --- */
+a, .stMarkdown p a {
+    color: #4daae3 !important;
 }
 
-/* --- Scrollbar adapts to system theme --- */
+/* --- Scrollbar --- */
 ::-webkit-scrollbar {
     width: 8px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: rgba(128,128,128,0.4);
     border-radius: 4px;
-}
-
-/* Dark mode improvements without breaking design */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text-color: #eaeaea;
-    }
-    [data-testid="stAppViewContainer"] {
-        background: linear-gradient(120deg, #2a2a2a 0%, #1c1c1c 100%);
-    }
-    .assistant-msg {
-        background: #2d2d2d;
-        border-color: #4daae3;
-    }
-    .card {
-        background: rgba(40,40,40,0.9);
-    }
-    input {
-        background: #1c1c1c !important;
-        color: #eaeaea !important;
-        border-color: #4daae3 !important;
-    }
 }
 
 </style>
@@ -411,4 +390,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
